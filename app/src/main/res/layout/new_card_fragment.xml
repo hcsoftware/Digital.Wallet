@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/cf_framelayout_container"
+    android:background="@color/background_color"
+    tools:context=".view.NewCardFragment">
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/ma_sub_text"
+            android:id="@+id/cf_text_insert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cf_text_card_title" />
+
+        <EditText
+            android:layout_marginTop="7dp"
+            android:id="@+id/cf_edittext_creditcard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/cf_edittext_hint"
+            android:maxLength="16"
+            android:inputType="numberDecimal" />
+
+        <TextView
+            android:layout_marginTop="7dp"
+            style="@style/ma_sub_text"
+            android:id="@+id/cf_text_card_brand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:layout_marginTop="7dp"
+            android:id="@+id/cf_button_addcard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ADD CARD" />
+
+    </LinearLayout>
+
+</FrameLayout>

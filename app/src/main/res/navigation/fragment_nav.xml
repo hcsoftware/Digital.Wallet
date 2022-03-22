@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_nav"
+    app:startDestination="@id/fragment_bottom_menu_item0">
+
+    <fragment
+        android:id="@+id/fragment_bottom_menu_item0"
+        android:name="com.xr6software.eldarwallet.view.BalanceFragment"
+        android:label="balance_fragment"
+        tools:layout="@layout/balance_fragment"
+        >
+        <action
+            android:id="@+id/action_balanceFragment_to_newCardFragment"
+            app:destination="@id/fragment_bottom_menu_item1" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_bottom_menu_item1"
+        android:name="com.xr6software.eldarwallet.view.NewCardFragment"
+        android:label="new_card_fragment"
+        tools:layout="@layout/new_card_fragment" >
+        <action
+            android:id="@+id/action_newCardFragment_to_paymentFragment"
+            app:destination="@id/fragment_bottom_menu_item2" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_bottom_menu_item2"
+        android:name="com.xr6software.eldarwallet.view.PaymentFragment"
+        android:label="payment_fragment"
+        tools:layout="@layout/payment_fragment" />
+</navigation>

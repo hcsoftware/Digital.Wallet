@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Eldar Wallet</string>
+    <string name="ma_title_txt">Welcome, \n please log in:</string>
+    <string name="ma_txt_user">Username</string>
+    <string name="ma_editxt_hint_user">username</string>
+    <string name="ma_txt_password">Password</string>
+    <string name="ma_editxt_hint_pass">password</string>
+    <string name="ma_snackbar_message">Please enter a username between 0 and 8 chars</string>
+    <string name="ma_dialog_new_user_title">User don\'t exists</string>
+    <string name="ma_dialog_new_user_message">Create new user?</string>
+    <string name="bf_welcome_msg">"Welcome back "</string>
+    <string name="bf_balance_msg">Your balance is</string>
+    <string name="bf_cards_message">These are your credit cards:</string>
+    <string name="nc_frag_card_add_msg">Credit card added successfully</string>
+    <string name="nc_frag_card_in_db_msg">The Card is already in your profile</string>
+    <string name="cf_text_card_title">"Insert Credit Card Number"</string>
+    <string name="cf_edittext_hint">CARD NUMBER</string>
+    <string name="pf_button_txt">Generate QR CODE</string>
+</resources>
