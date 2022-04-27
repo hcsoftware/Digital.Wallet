@@ -1,9 +1,6 @@
 package com.xr6software.eldarwallet.view
 
-import android.graphics.BitmapFactory
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,12 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.xr6software.eldarwallet.databinding.PaymentFragmentBinding
-import com.xr6software.eldarwallet.viewmodel.LoginActivityViewModel
 import com.xr6software.eldarwallet.viewmodel.PaymentViewModel
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.RequestBody
 
 
 class PaymentFragment : Fragment() {
@@ -60,6 +52,7 @@ class PaymentFragment : Fragment() {
 
             if (viewBinding.pfEdittextInput.text.length > 0) {
 
+                /*
                 LoginActivityViewModel.doAsync {
 
                     var amount: String = viewBinding.pfEdittextInput.text.toString()
@@ -89,7 +82,7 @@ class PaymentFragment : Fragment() {
                     }
 
                 }.execute()
-
+                   */
             }
 
         }

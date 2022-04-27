@@ -7,6 +7,9 @@ import androidx.lifecycle.ViewModel
 import com.xr6software.eldarwallet.model.User
 import com.xr6software.eldarwallet.model.UserDatabase
 import com.xr6software.eldarwallet.model.UserSingletonModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.launch
 
 class NewCardViewModel : ViewModel() {
 
@@ -15,20 +18,20 @@ class NewCardViewModel : ViewModel() {
 
     fun setUser(context : Context) {
 
-        LoginActivityViewModel.doAsync {
+        CoroutineScope(IO).launch {
             user = UserDatabase.getDatabase(context).userDao().findByName(UserSingletonModel.username)
             userCards.postValue(user.cards.toString())
-        }.execute()
+        }
 
     }
 
-    fun addCreditCard(context: Context, username: String,cards : String) : Unit {
+    fun addCreditCard(context: Context, username: String,cards : String) {
 
         var newCards = userCards.value + cards
 
-        LoginActivityViewModel.doAsync {
+        CoroutineScope(IO).launch {
             UserDatabase.getDatabase(context).userDao().addCreditCardByName(username,newCards)
-        }.execute()
+        }
 
     }
 

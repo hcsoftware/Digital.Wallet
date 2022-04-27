@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Eldar Wallet</string>
+    <string name="app_name">Digital Wallet</string>
     <string name="ma_title_txt">Welcome, \n please log in:</string>
     <string name="ma_txt_user">Username</string>
     <string name="ma_editxt_hint_user">username</string>

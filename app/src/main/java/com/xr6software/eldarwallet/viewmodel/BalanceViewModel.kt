@@ -1,14 +1,15 @@
 package com.xr6software.eldarwallet.viewmodel
 
 import android.content.Context
-import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.xr6software.eldarwallet.R
 import com.xr6software.eldarwallet.model.User
 import com.xr6software.eldarwallet.model.UserDatabase
 import com.xr6software.eldarwallet.model.UserSingletonModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.launch
 
 class BalanceViewModel : ViewModel() {
 
@@ -19,13 +20,12 @@ class BalanceViewModel : ViewModel() {
 
     fun setUser(context : Context) {
 
-        LoginActivityViewModel.doAsync {
+        CoroutineScope(IO).launch {
             user = UserDatabase.getDatabase(context).userDao().findByName(UserSingletonModel.username)
             username.postValue(user.username.toString())
             balance.postValue(((user.balance?: "0.00") as Double?))
             cards.postValue(user.cards.toString())
-
-        }.execute()
+        }
 
     }
 
