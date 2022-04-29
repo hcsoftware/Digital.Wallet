@@ -71,7 +71,7 @@ class PaymentFragment : Fragment() {
                         .addHeader("X-RapidAPI-Host", "neutrinoapi-qr-code.p.rapidapi.com")
                         .addHeader(
                             "X-RapidAPI-Key",
-                            "7a7139a7ddmshffc2d74e52712e6p1341bfjsn4e975643f271"
+                            "valid api key"
                         )
                         .build()
 
