@@ -8,6 +8,7 @@ Implements:<br></p>
   <li>Coroutines for DB CRUD.</li>
   <li>Okhttp library for API request.</li>
   <li>Glide to load Images.</li>
+  <li>Singleton pattern.</li>
 </ul>
 <p> In this project you migth find UI implements like:<p>
 <ul>
