@@ -1,10 +1,11 @@
 package com.xr6software.eldarwallet.view
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
@@ -20,6 +21,8 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var viewBinding : ActivityLoginBinding
     private lateinit var viewModel : LoginActivityViewModel
+    private val MIN_USERPASS_CHARS : Int = 4
+    private val MAX_USERPASS_CHARS : Int = 8
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,33 +32,57 @@ class LoginActivity : AppCompatActivity() {
         val view : View = viewBinding.root
         setContentView(view)
 
+        customizeActionBar()
+        setOnClickListeners()
+        setObservables()
+
+    }
+
+    private fun customizeActionBar() {
+        supportActionBar?.setIcon(R.drawable.toolbar_icon)
+        supportActionBar?.setDisplayUseLogoEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+    }
+
+    private fun setOnClickListeners() {
+
         viewBinding.maButtonLogin.setOnClickListener {
-            if ((viewBinding.maEdittxtUser.text.toString().length > 0 ) && (viewBinding.maEdittxtUser.text.toString().length <= 8 )) {
-                viewModel.checkIfUserExists(applicationContext , viewBinding.maEdittxtUser.text.toString())
+
+            if (validateUserInputEditText(viewBinding.maEdittxtUser) && validateUserInputEditText(viewBinding.maEdittxtPass)) {
+                //Checks for username in db. Modify the getUsernameExists observable.
+                viewModel.checkIfUsernameExists(applicationContext, viewBinding.maEdittxtUser.text.toString())
             }
             else {
                 Snackbar.make(viewBinding.constraintLayoutMa, R.string.ma_snackbar_message, Snackbar.LENGTH_SHORT).show()
             }
         }
-        setObservables()
 
     }
 
     fun setObservables() {
+        //This observable checks for valid username
+        viewModel.getUserNameExists().observe(this, Observer {
 
+            if (!it) { showCreateUserDialog() } //User doesnt exists.
+            else { viewModel.getUserFromDb(applicationContext, viewBinding.maEdittxtUser.text.toString(),viewBinding.maEdittxtPass.text.toString()) }
+
+        })
+        //This observable checks for valid credentials (user/pass)
+        viewModel.getValidCredentials().observe(this, Observer {
+
+            if (!it) { Snackbar.make(viewBinding.constraintLayoutMa, R.string.ma_snackbar_badcredentials, Snackbar.LENGTH_SHORT).show() }
+
+        })
+        //This observable checks user callback from database
         viewModel.getuserInDatabase().observe(this, Observer {
             if (it != null) {
-                //Call Activity and init singleton
-                UserSingletonModel(it)
+                //Call Wallet Activity and init singleton
+                UserSingletonModel.setUser(it)
                 var intent : Intent = Intent(this, WalletActivity::class.java)
                 startActivity(intent)
                 finish()
             }
-            else {
-                showCreateUserDialog()
-            }
         })
-
     }
 
     fun showCreateUserDialog() {
@@ -64,12 +91,18 @@ class LoginActivity : AppCompatActivity() {
         builder.setMessage(R.string.ma_dialog_new_user_message)
         builder.setCancelable(false)
         builder.setPositiveButton(android.R.string.yes) {dialogInterface, which ->
-            viewModel.insertUserInDatabase(applicationContext, viewBinding.maEdittxtUser.text.toString(), "")
+            viewModel.insertUserInDatabase(applicationContext, viewBinding.maEdittxtUser.text.toString(), viewBinding.maEdittxtPass.text.toString())
+            Snackbar.make(viewBinding.constraintLayoutMa, R.string.la_usercreated_msg, Snackbar.LENGTH_LONG).show()
         }
-        builder.setNegativeButton(android.R.string.no) { dialogInterface, which ->
+        builder.setNegativeButton(android.R.string.no) { _, _ ->
             //close dialog
         }
         builder.show()
 
     }
+
+    fun validateUserInputEditText(edittext : EditText) : Boolean{
+        return (edittext.text.toString().length >= MIN_USERPASS_CHARS ) && (edittext.text.toString().length <= MAX_USERPASS_CHARS )
+    }
+
 }

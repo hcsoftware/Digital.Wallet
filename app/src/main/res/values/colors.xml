@@ -8,5 +8,19 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="main_color">#FF018786</color>
-    <color name="background_color">#44519C</color>
+    <color name="background_color">#F2F2F2</color>
+    <color name="text_color">#85695D</color>
+    <color name="text_color_main">#054776</color>
+    <color name="text_color_border">#79DDFA</color>
+
+
+    <!--THEME COLORS-->
+    <color name="theme_color_0">#064973</color>
+    <color name="theme_color_1">#4AB0D9</color>
+    <color name="theme_color_2">#77DCF2</color>
+    <color name="theme_color_3">#F2F2F2</color>
+    <color name="theme_color_4">#3F51B5</color>
+
+
+
 </resources>

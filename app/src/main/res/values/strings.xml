@@ -1,13 +1,15 @@
 <resources>
     <string name="app_name">Digital Wallet</string>
     <string name="ma_title_txt">Welcome, \n please log in:</string>
-    <string name="ma_txt_user">Username</string>
+    <string name="ma_txt_user">Username:</string>
     <string name="ma_editxt_hint_user">username</string>
-    <string name="ma_txt_password">Password</string>
+    <string name="ma_txt_password">Password:</string>
     <string name="ma_editxt_hint_pass">password</string>
-    <string name="ma_snackbar_message">Please enter a username between 0 and 8 chars</string>
+    <string name="ma_snackbar_message">Username and Password must be between 4 and 8 chars.</string>
+    <string name="ma_snackbar_badcredentials">Invalid Username / Password.</string>
+    <string name="la_usercreated_msg">User Created. You can log in now.</string>
     <string name="ma_dialog_new_user_title">User don\'t exists</string>
-    <string name="ma_dialog_new_user_message">Create new user?</string>
+    <string name="ma_dialog_new_user_message">Create new user? The username and password would be the one you texted.</string>
     <string name="bf_welcome_msg">"Welcome back "</string>
     <string name="bf_balance_msg">Your balance is</string>
     <string name="bf_cards_message">These are your credit cards:</string>

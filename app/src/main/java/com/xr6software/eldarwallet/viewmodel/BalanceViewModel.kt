@@ -21,7 +21,7 @@ class BalanceViewModel : ViewModel() {
     fun setUser(context : Context) {
 
         CoroutineScope(IO).launch {
-            user = UserDatabase.getDatabase(context).userDao().findByName(UserSingletonModel.username)
+            user = UserDatabase.getDatabase(context).userDao().findByName(UserSingletonModel.getUser().username.toString())
             username.postValue(user.username.toString())
             balance.postValue(((user.balance?: "0.00") as Double?))
             cards.postValue(user.cards.toString())

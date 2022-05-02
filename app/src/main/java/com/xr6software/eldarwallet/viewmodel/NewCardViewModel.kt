@@ -19,7 +19,7 @@ class NewCardViewModel : ViewModel() {
     fun setUser(context : Context) {
 
         CoroutineScope(IO).launch {
-            user = UserDatabase.getDatabase(context).userDao().findByName(UserSingletonModel.username)
+            user = UserDatabase.getDatabase(context).userDao().findByName(UserSingletonModel.getUser().username.toString())
             userCards.postValue(user.cards.toString())
         }
 

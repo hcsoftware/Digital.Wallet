@@ -85,7 +85,7 @@ class NewCardFragment : Fragment() {
     fun proccesCard(userInput: String){
 
         if(!checkIfCardExists(userInput)) {
-            viewModel.addCreditCard(requireActivity(), UserSingletonModel.username, userInput)
+            viewModel.addCreditCard(requireActivity(), UserSingletonModel.getUser().username.toString(), userInput)
             viewModel.setUser(requireActivity())
             Toast.makeText(requireContext(), getString(R.string.nc_frag_card_add_msg),Toast.LENGTH_LONG).show()
         }
