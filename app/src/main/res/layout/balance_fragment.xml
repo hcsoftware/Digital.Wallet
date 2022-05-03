@@ -10,69 +10,64 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/theme_color_00">
 
-        <TextView
-            android:id="@+id/bf_textview_username"
-            style="@style/la_textview"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <LinearLayout
-            android:layout_marginTop="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
-                android:layout_marginRight="5dp"
-                android:src="@drawable/ic_money" />
+            android:layout_height="0dp"
+            android:layout_weight=".33"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/bf_textview_balance"
-                style="@style/la_textview"
+                android:id="@+id/bf_txt_upper_balance"
+                style="@style/bf_balance_uppertxt"
+                android:text="@string/bf_balance_uppertxt"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
-                android:layout_marginRight="5dp"
-                android:src="@drawable/ic_card" />
+                android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/bf_textview_cards"
-                style="@style/la_textview"
+                android:id="@+id/bf_txt_balance"
+                style="@style/bf_balance"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="@string/bf_cards_message" />
+                android:layout_height="wrap_content" />
 
 
         </LinearLayout>
 
 
-        <Spinner
-            android:id="@+id/bf_spinner_cards"
-            style="@style/la_textview"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="20dp" />
+            android:layout_height="0dp"
+            android:layout_weight=".77"
+            android:background="@drawable/layout_round_corner">
 
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/bf_textview_cards"
+                    style="@style/la_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/bf_cards_message" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginTop="15dp"
+                    android:id="@+id/bf_item_holder"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        </LinearLayout>
+
+
 </FrameLayout>

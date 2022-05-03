@@ -22,11 +22,12 @@
             app:defaultNavHost='true'/>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
+            app:itemTextColor="@color/theme_color_11"
             android:id="@+id/wa_bottom_menu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="@android:color/holo_blue_light"
+            android:background="@color/theme_color_00"
             app:menu="@menu/fragments_bottom_menu" />
 
     </RelativeLayout>

@@ -31,8 +31,8 @@ class LoginActivityViewModel() : ViewModel() {
                 User(
                     username = username,
                     pass = password,
-                    balance = 00.00,
-                    cards = ""
+                    balance = 5230.22,
+                    cards = "4580067664664646312345678978542"
                 )
             )
         }

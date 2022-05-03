@@ -22,5 +22,14 @@
     <color name="theme_color_4">#3F51B5</color>
 
 
+    <!--NEW THEME COLORS-->
+    <color name="theme_color_00">#003495</color>
+    <color name="theme_color_11">#FFFFFF</color>
+    <color name="theme_color_22">#001233</color>
+    <color name="theme_color_33">#0A3C9A</color>
+    <color name="theme_color_44">#EB1734</color>
+
+
+
 
 </resources>

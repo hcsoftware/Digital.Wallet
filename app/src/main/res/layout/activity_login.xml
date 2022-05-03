@@ -2,98 +2,136 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint_layout_ma"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/constraint_layout_ma"
-    android:background="@color/background_color"
-    tools:context=".view.LoginActivity">
-
-    <TextView
-        style="@style/ma_main_text"
-        android:textColor="@color/white"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="170dp"
-        android:id="@+id/ma_txtview_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/ma_title_txt"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+    android:orientation="horizontal">
 
     <LinearLayout
-        android:padding="20dp"
-        android:id="@+id/ma_linlayout_mainholder"
-        app:layout_constraintTop_toBottomOf="@id/ma_txtview_title"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/theme_color_00">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="0dp"
+            android:layout_weight=".33">
 
             <TextView
-                style="@style/ma_sub_text"
-                android:layout_gravity="center_vertical"
-                android:id="@+id/ma_txtview_user"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/ma_txt_user" />
-
-            <EditText
-                style="@style/ma_sub_text"
-                android:id="@+id/ma_edittxt_user"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:maxLines="10"
-                android:inputType="textPersonName"
-                android:hint="@string/ma_editxt_hint_user" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/la_title"
+                android:text="@string/ma_title_txt"/>
 
         </LinearLayout>
 
         <LinearLayout
+            android:background="@drawable/layout_round_corner"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="0dp"
+            android:layout_weight=".77"
+            android:orientation="vertical">
 
-            <TextView
-                style="@style/ma_sub_text"
-                android:layout_gravity="center_vertical"
-                android:id="@+id/ma_txtview_pass"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/ma_txt_password" />
+                android:orientation="horizontal">
 
-            <EditText
-                style="@style/ma_sub_text"
-                android:id="@+id/ma_edittxt_pass"
-                android:layout_width="0dp"
+                <View
+                    android:layout_marginTop="35dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="0dp"
+                    android:layout_weight=".4"
+                    android:layout_height="3dp"
+                    android:background="@color/theme_color_44" />
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/person"/>
+
+                <View
+                    android:layout_marginTop="35dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_width="0dp"
+                    android:layout_weight=".4"
+                    android:layout_height="3dp"
+                    android:background="@color/theme_color_44"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="25dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:maxLines="10"
-                android:inputType="textPassword"
-                android:hint="@string/ma_editxt_hint_pass"/>
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/la_textview"
+                    android:id="@+id/ma_txtview_user"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/ma_txt_user" />
+
+                <EditText
+                    style="@style/la_edittext"
+                    android:id="@+id/ma_edittxt_user"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:maxLines="10"
+                    android:inputType="textPersonName"
+                    android:hint="@string/ma_editxt_hint_user" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="25dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/la_textview"
+                    android:id="@+id/ma_txtview_pass"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/ma_txt_password" />
+
+                <EditText
+                    style="@style/la_edittext"
+                    android:id="@+id/ma_edittxt_pass"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:maxLines="10"
+                    android:inputType="textPassword"
+                    android:hint="@string/ma_editxt_hint_pass"/>
+            </LinearLayout>
+
+            <Button
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="50dp"
+                android:id="@+id/ma_button_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LOG IN"/>
+
         </LinearLayout>
+
+
     </LinearLayout>
 
-    <Button
-        android:id="@+id/ma_button_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="LOG IN"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ma_linlayout_mainholder"
-        android:layout_marginBottom="70dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

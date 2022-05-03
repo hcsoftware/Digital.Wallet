@@ -1,6 +1,8 @@
 package com.xr6software.eldarwallet.view
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
@@ -39,9 +41,11 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun customizeActionBar() {
-        supportActionBar?.setIcon(R.drawable.toolbar_icon)
-        supportActionBar?.setDisplayUseLogoEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
+        //supportActionBar?.setIcon(R.drawable.toolbar_icon)
+        //supportActionBar?.setDisplayUseLogoEnabled(true)
+        //supportActionBar?.setDisplayShowHomeEnabled(true)
+        //supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#003495")))
+        supportActionBar?.hide()
     }
 
     private fun setOnClickListeners() {

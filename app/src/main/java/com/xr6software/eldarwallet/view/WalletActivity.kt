@@ -27,6 +27,7 @@ class WalletActivity : AppCompatActivity() {
         supportActionBar?.setDisplayUseLogoEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.title = "Logged as: " + UserSingletonModel.getUser().username
+        supportActionBar?.hide()
     }
 
     private fun configNav() : Unit {

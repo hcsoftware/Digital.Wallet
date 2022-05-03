@@ -1,7 +1,6 @@
 package com.xr6software.eldarwallet.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.VerifiedInputEvent
 import android.view.View
@@ -12,6 +11,8 @@ import android.widget.SpinnerAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.xr6software.eldarwallet.R
 import com.xr6software.eldarwallet.databinding.BalanceFragmentBinding
 import com.xr6software.eldarwallet.viewmodel.BalanceViewModel
@@ -25,6 +26,7 @@ class BalanceFragment : Fragment() {
 
     private lateinit var viewModel: BalanceViewModel
     private lateinit var viewBinding: BalanceFragmentBinding
+    private lateinit var creditCardAdapter: AdapterCreditCard
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,21 +45,27 @@ class BalanceFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(BalanceViewModel::class.java)
         viewModel.setUser(requireActivity())
 
+        //Init adapter and links it view recycler view
+        creditCardAdapter = AdapterCreditCard()
+        val recyclerView : RecyclerView = viewBinding.bfItemHolder
+
+        recyclerView.apply {
+            layoutManager = GridLayoutManager(context, 1)
+            adapter = creditCardAdapter
+        }
+
+
         setObservables()
 
     }
 
     fun setObservables() {
 
-        viewModel.getUsername().observe(viewLifecycleOwner, Observer {
-            viewBinding.bfTextviewUsername.text = getString(R.string.bf_welcome_msg) + it
-
-        })
         viewModel.getBalance().observe(viewLifecycleOwner, Observer {
-            viewBinding.bfTextviewBalance.text = getString(R.string.bf_balance_msg) + ": $ $it"
+            viewBinding.bfTxtBalance.text = getString(R.string.bf_balance_msg) + "$it"
         })
         viewModel.getCards().observe(viewLifecycleOwner, Observer {
-            if (it.length >=0 )fillSpinner(getCardsFromString(it))
+            if (it.length >=0 ) creditCardAdapter.updateDataOnView(getCardsFromString(it))
         })
 
     }
@@ -66,13 +74,13 @@ class BalanceFragment : Fragment() {
 
         val adapter = ArrayAdapter<String>(requireActivity(), android.R.layout.simple_spinner_item,cardList)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        viewBinding.bfSpinnerCards.adapter = adapter
+        //viewBinding.bfSpinnerCards.adapter = adapter
 
     }
 
-    fun getCardsFromString(cards: String): List<String> {
+    fun getCardsFromString(cards: String): ArrayList<String> {
 
-        var cardsList: MutableList<String> = ArrayList()
+        var cardsList = ArrayList<String>()
         var newCards: String = cards
         var card: String = ""
         var index: Int = 0
