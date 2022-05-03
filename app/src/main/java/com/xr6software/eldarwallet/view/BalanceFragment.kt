@@ -70,14 +70,6 @@ class BalanceFragment : Fragment() {
 
     }
 
-    fun fillSpinner(cardList: List<String>) {
-
-        val adapter = ArrayAdapter<String>(requireActivity(), android.R.layout.simple_spinner_item,cardList)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        //viewBinding.bfSpinnerCards.adapter = adapter
-
-    }
-
     fun getCardsFromString(cards: String): ArrayList<String> {
 
         var cardsList = ArrayList<String>()
