@@ -70,7 +70,7 @@
         <item name="android:shadowColor">@color/theme_color_11</item>
         <item name="android:shadowDx">0</item>
         <item name="android:shadowDy">0</item>
-        <item name="android:shadowRadius">2</item>
+        <item name="android:shadowRadius">3</item>
     </style>
 
     <style name="bf_creditcard_uppertxt">
@@ -90,31 +90,51 @@
         <item name="android:textColor">@color/theme_color_22</item>
     </style>
 
-
-    <style name="bf_textview">
+    <style name="nf_textview">
         <item name="android:gravity">center_horizontal</item>
-        <item name="android:textSize">22sp</item>
+        <item name="android:fontFamily">@font/palanquin_dark_semibold</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/theme_color_0</item>
-        <item name="android:shadowColor">@color/theme_color_1</item>
-        <item name="android:shadowDx">0</item>
-        <item name="android:shadowDy">0</item>
-        <item name="android:shadowRadius">3</item>
+        <item name="android:textColor">@color/theme_color_33</item>
     </style>
 
-    <style name="ma_main_text">
-        <item name="android:textSize">35sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/text_color_main</item>
-    </style>
-
-    <style name="ma_sub_text">
+    <style name="nf_edittext">
+        <item name="android:gravity">center_horizontal</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/text_color_main</item>
-        <item name="android:gravity">center_horizontal</item>
-
+        <item name="android:textColor">@color/theme_color_22</item>
+        <item name="android:ems">10</item>
+        <item name="android:maxLength">16</item>
+        <item name="android:inputType">numberDecimal</item>
     </style>
 
+    <style name="nf_textview_cardbrand">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/theme_color_44</item>
+        <item name="android:shadowColor">@color/theme_color_44</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">0</item>
+        <item name="android:shadowRadius">2</item>
+    </style>
+
+    <style name="pf_textview">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:fontFamily">@font/palanquin_dark_semibold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/theme_color_33</item>
+    </style>
+
+    <style name="pf_edittext">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/theme_color_22</item>
+        <item name="android:ems">10</item>
+        <item name="android:maxLength">10</item>
+        <item name="android:inputType">number</item>
+    </style>
 
 </resources>

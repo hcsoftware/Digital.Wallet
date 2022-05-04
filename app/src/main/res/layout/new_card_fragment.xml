@@ -8,41 +8,92 @@
     tools:context=".view.NewCardFragment">
 
     <LinearLayout
-        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@color/theme_color_00">
 
-        <TextView
-            style="@style/ma_sub_text"
-            android:id="@+id/cf_text_insert"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/cf_text_card_title" />
 
-        <EditText
-            android:layout_marginTop="7dp"
-            android:id="@+id/cf_edittext_creditcard"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/cf_edittext_hint"
-            android:maxLength="16"
-            android:inputType="numberDecimal" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".33"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-        <TextView
-            android:layout_marginTop="7dp"
-            style="@style/ma_sub_text"
-            android:id="@+id/cf_text_card_brand"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
 
-        <Button
-            android:layout_marginTop="7dp"
-            android:id="@+id/cf_button_addcard"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ADD CARD" />
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/ic_add_card"/>
+
+
+            <TextView
+                style="@style/la_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="@string/cf_text_card_title" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".77"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/layout_round_corner">
+
+            <TextView
+                style="@style/nf_textview"
+                android:id="@+id/cf_text_insert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cf_text_card_new" />
+
+            <EditText
+                style="@style/nf_edittext"
+                android:layout_marginTop="7dp"
+                android:id="@+id/cf_edittext_creditcard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/cf_edittext_hint"/>
+
+            <LinearLayout
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/cf_imageview_card"
+                    ></ImageView>
+
+                <TextView
+                    android:paddingLeft="7dp"
+                    style="@style/nf_textview_cardbrand"
+                    android:id="@+id/cf_text_card_brand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"/>
+
+
+            </LinearLayout>
+
+            <Button
+                android:layout_marginTop="10dp"
+                android:id="@+id/cf_button_addcard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ADD CARD" />
+
+        </LinearLayout>
+
 
     </LinearLayout>
 

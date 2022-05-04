@@ -16,9 +16,12 @@
     <string name="bf_cards_message">CREDIT CARDS:</string>
     <string name="nc_frag_card_add_msg">Credit card added successfully</string>
     <string name="nc_frag_card_in_db_msg">The Card is already in your profile</string>
-    <string name="cf_text_card_title">"Insert Credit Card Number"</string>
+    <string name="cf_text_card_title">BANKCARD</string>
+    <string name="cf_text_card_new">"INSERT CREDIT CARD NUMBER:"</string>
     <string name="cf_edittext_hint">CARD NUMBER</string>
     <string name="pf_button_txt">Generate QR CODE</string>
     <string name="bf_creditcard_uppertxt">CARD NUMBER:</string>
+    <string name="pf_textview_amount">SET AMOUNT:</string>
+    <string name="pf_edittext_hint">$ ARS</string>
 
 </resources>

@@ -71,16 +71,19 @@ class NewCardFragment : Fragment() {
 
             if (text?.length!! > 0) {
                 when (text[0]) {
-                    '4','5' -> viewBinding.cfTextCardBrand.text = "VISA"
-                    '3' -> viewBinding.cfTextCardBrand.text = "AMERICAN EXPRESS"
-                    else -> viewBinding.cfTextCardBrand.text = "Invalid card. Please check your first digit"
+                    '4','5' -> { viewBinding.cfTextCardBrand.text = "VISA" ; viewBinding.cfImageviewCard.setImageResource(R.drawable.creditcard_visa) }
+                    '3' -> { viewBinding.cfTextCardBrand.text = "AMERICAN EXPRESS" ; viewBinding.cfImageviewCard.setImageResource(R.drawable.creditcard_american) }
+                    else -> { viewBinding.cfTextCardBrand.text = "Invalid card. Please check your first digit" ; viewBinding.cfImageviewCard.setImageDrawable(null) }
                 }
+            }
+            else {
+                viewBinding.cfTextCardBrand.text = ""
+                viewBinding.cfImageviewCard.setImageDrawable(null)
             }
 
         }
 
     }
-
 
     fun proccesCard(userInput: String){
 

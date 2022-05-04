@@ -7,38 +7,70 @@
     tools:context=".view.PaymentFragment">
 
     <LinearLayout
-        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@color/theme_color_00">
 
-        <TextView
-            style="@style/ma_sub_text"
-            android:id="@+id/pf_textview_amount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="insertar monto" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".33"
+            android:orientation="horizontal"
+            android:gravity="center">
 
-        <EditText
-            style="@style/ma_sub_text"
-            android:id="@+id/pf_edittext_input"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="INGRESE MONTO EN ARS"
-            android:inputType="textPersonName" />
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/ic_qrcode"/>
 
-        <Button
-            android:id="@+id/pf_button_generate_code"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/pf_button_txt" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/la_title"
+                android:layout_marginLeft="10dp"
+                android:text="PAYMENTS"/>
 
-        <ImageView
-            android:id="@+id/pf_image_qrcode"
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".77"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/layout_round_corner">
+
+            <TextView
+                style="@style/pf_textview"
+                android:id="@+id/pf_textview_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pf_textview_amount" />
+
+            <EditText
+                style="@style/pf_edittext"
+                android:id="@+id/pf_edittext_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/pf_edittext_hint"/>
+
+            <Button
+                android:layout_marginTop="60dp"
+                android:id="@+id/pf_button_generate_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pf_button_txt" />
+
+            <ImageView
+                android:id="@+id/pf_image_qrcode"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
 
     </LinearLayout>
+
 </FrameLayout>
