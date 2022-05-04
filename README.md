@@ -19,3 +19,6 @@ Implements:<br></p>
 <li>Android Bottom bar customization</li>
 </ul>
 <p> This app handles a user creation / login in a DB, with username and password credentials, adds user credit cars, generates QR Code for payments via OpenAPI.</p> 
+
+<img src="https://user-images.githubusercontent.com/100162759/166834840-48876fef-d347-484c-a522-ea0a4c35f8ea.png" width=30% height=30%>
+<img src="https://user-images.githubusercontent.com/100162759/166834853-34b8bdf7-e073-4442-b059-1022f7da9f67.png" width=30% height=30%>
