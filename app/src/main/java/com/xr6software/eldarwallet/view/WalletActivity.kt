@@ -1,6 +1,8 @@
 package com.xr6software.eldarwallet.view
 
+import android.content.DialogInterface
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
@@ -35,5 +37,24 @@ class WalletActivity : AppCompatActivity() {
         NavigationUI.setupWithNavController(bottomToolbar, navController)
     }
 
+    override fun onBackPressed() {
+        showQuitDialog()
+    }
+
+    fun showQuitDialog(){
+        val dialogBuilder = AlertDialog.Builder(this)
+
+        dialogBuilder.setMessage(R.string.quit_dialog_msg)
+            .setCancelable(false)
+            .setPositiveButton(R.string.quit_dialog_positive, DialogInterface.OnClickListener {
+                    dialog, id -> finish()
+            })
+            .setNegativeButton(R.string.quit_dialog_negative, DialogInterface.OnClickListener {
+                    dialog, id -> dialog.cancel()
+            })
+        val alert = dialogBuilder.create()
+        alert.setTitle(R.string.quit_dialog_title)
+        alert.show()
+    }
 
 }

@@ -23,5 +23,8 @@
     <string name="bf_creditcard_uppertxt">CARD NUMBER:</string>
     <string name="pf_textview_amount">SET AMOUNT:</string>
     <string name="pf_edittext_hint">$ ARS</string>
-
+    <string name="quit_dialog_title">DIGITAL WALLET</string>
+    <string name="quit_dialog_msg">Do you want to close this application ?</string>
+    <string name="quit_dialog_positive">Proceed</string>
+    <string name="quit_dialog_negative">Cancel</string>
 </resources>
