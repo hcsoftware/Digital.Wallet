@@ -1,19 +1,14 @@
 package com.xr6software.eldarwallet.view
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
-import com.google.android.material.snackbar.Snackbar
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.xr6software.eldarwallet.R
-import com.xr6software.eldarwallet.databinding.BalanceFragmentBinding
 import com.xr6software.eldarwallet.databinding.NewCardFragmentBinding
 import com.xr6software.eldarwallet.model.UserSingletonModel
 import com.xr6software.eldarwallet.viewmodel.NewCardViewModel
@@ -60,7 +55,7 @@ class NewCardFragment : Fragment() {
                     proccesCard(viewBinding.cfEdittextCreditcard.text.toString())
                 }
                 else {
-                    Toast.makeText(requireContext(), "La Tarjeta es invalida",Toast.LENGTH_LONG).show()
+                    MessageFactory.showToast(requireContext(),R.string.ncf_invalid_card_msg, Gravity.CENTER)
                 }
 
             }
@@ -71,9 +66,9 @@ class NewCardFragment : Fragment() {
 
             if (text?.length!! > 0) {
                 when (text[0]) {
-                    '4','5' -> { viewBinding.cfTextCardBrand.text = "VISA" ; viewBinding.cfImageviewCard.setImageResource(R.drawable.creditcard_visa) }
-                    '3' -> { viewBinding.cfTextCardBrand.text = "AMERICAN EXPRESS" ; viewBinding.cfImageviewCard.setImageResource(R.drawable.creditcard_american) }
-                    else -> { viewBinding.cfTextCardBrand.text = "Invalid card. Please check your first digit" ; viewBinding.cfImageviewCard.setImageDrawable(null) }
+                    '4','5' -> { viewBinding.cfTextCardBrand.text = getString(R.string.ncf_visa_msg) ; viewBinding.cfImageviewCard.setImageResource(R.drawable.creditcard_visa) }
+                    '3' -> { viewBinding.cfTextCardBrand.text = getString(R.string.ncf_american_msg) ; viewBinding.cfImageviewCard.setImageResource(R.drawable.creditcard_american) }
+                    else -> { viewBinding.cfTextCardBrand.text = getString(R.string.ncf_invalid_input_msg) ; viewBinding.cfImageviewCard.setImageDrawable(null) }
                 }
             }
             else {
@@ -90,10 +85,10 @@ class NewCardFragment : Fragment() {
         if(!checkIfCardExists(userInput)) {
             viewModel.addCreditCard(requireActivity(), UserSingletonModel.getUser().username.toString(), userInput)
             viewModel.setUser(requireActivity())
-            Toast.makeText(requireContext(), getString(R.string.nc_frag_card_add_msg),Toast.LENGTH_LONG).show()
+            MessageFactory.showToast(requireContext(), R.string.nc_frag_card_add_msg, Gravity.CENTER)
         }
         else {
-            Toast.makeText(requireContext(), getString(R.string.nc_frag_card_in_db_msg),Toast.LENGTH_LONG).show()
+            MessageFactory.showToast(requireContext(), R.string.nc_frag_card_in_db_msg, Gravity.CENTER)
         }
     }
 
@@ -118,7 +113,6 @@ class NewCardFragment : Fragment() {
             userCreditCards = userCreditCards.substring(index, userCreditCards.length);
             index = 0
             cardsList.add(card)
-
         }
         return cardsList.contains(userInput)
     }

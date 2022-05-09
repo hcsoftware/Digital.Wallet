@@ -1,8 +1,6 @@
 package com.xr6software.eldarwallet.view
 
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
@@ -10,7 +8,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.snackbar.Snackbar
 import com.xr6software.eldarwallet.R
 import com.xr6software.eldarwallet.databinding.ActivityLoginBinding
 import com.xr6software.eldarwallet.model.UserSingletonModel
@@ -41,10 +38,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun customizeActionBar() {
-        //supportActionBar?.setIcon(R.drawable.toolbar_icon)
-        //supportActionBar?.setDisplayUseLogoEnabled(true)
-        //supportActionBar?.setDisplayShowHomeEnabled(true)
-        //supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#003495")))
         supportActionBar?.hide()
     }
 
@@ -57,7 +50,7 @@ class LoginActivity : AppCompatActivity() {
                 viewModel.checkIfUsernameExists(applicationContext, viewBinding.maEdittxtUser.text.toString())
             }
             else {
-                Snackbar.make(viewBinding.constraintLayoutMa, R.string.ma_snackbar_message, Snackbar.LENGTH_SHORT).show()
+                MessageFactory.showSnackBar(viewBinding.constraintLayoutMa, R.string.ma_snackbar_inputerror)
             }
         }
 
@@ -73,8 +66,9 @@ class LoginActivity : AppCompatActivity() {
         })
         //This observable checks for valid credentials (user/pass)
         viewModel.getValidCredentials().observe(this, Observer {
-
-            if (!it) { Snackbar.make(viewBinding.constraintLayoutMa, R.string.ma_snackbar_badcredentials, Snackbar.LENGTH_SHORT).show() }
+            if (!it) {
+                MessageFactory.showSnackBar(viewBinding.constraintLayoutMa, R.string.ma_snackbar_badcredentials)
+            }
 
         })
         //This observable checks user callback from database
@@ -96,7 +90,7 @@ class LoginActivity : AppCompatActivity() {
         builder.setCancelable(false)
         builder.setPositiveButton(android.R.string.yes) {dialogInterface, which ->
             viewModel.insertUserInDatabase(applicationContext, viewBinding.maEdittxtUser.text.toString(), viewBinding.maEdittxtPass.text.toString())
-            Snackbar.make(viewBinding.constraintLayoutMa, R.string.la_usercreated_msg, Snackbar.LENGTH_LONG).show()
+            MessageFactory.showSnackBar(viewBinding.constraintLayoutMa, R.string.la_usercreated_msg)
         }
         builder.setNegativeButton(android.R.string.no) { _, _ ->
             //close dialog

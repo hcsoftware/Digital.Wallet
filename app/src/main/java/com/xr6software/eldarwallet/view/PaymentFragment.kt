@@ -1,14 +1,25 @@
 package com.xr6software.eldarwallet.view
 
+import android.app.Activity
+import android.content.Context
+import android.content.Context.INPUT_METHOD_SERVICE
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.xr6software.eldarwallet.R
 import com.xr6software.eldarwallet.databinding.PaymentFragmentBinding
 import com.xr6software.eldarwallet.viewmodel.PaymentViewModel
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class PaymentFragment : Fragment() {
@@ -17,6 +28,8 @@ class PaymentFragment : Fragment() {
         fun newInstance() = PaymentFragment()
     }
 
+    private val DEFAULT_QRCODE_SIZE : Int = 150  //QR Code image size in pixels min = 150 ; Max : 250 //
+
     private lateinit var viewModel: PaymentViewModel
     private lateinit var viewBinding: PaymentFragmentBinding
 
@@ -24,7 +37,6 @@ class PaymentFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        //return inflater.inflate(R.layout.payment_fragment, container, false)
 
         viewBinding = PaymentFragmentBinding.inflate(inflater, container, false)
         return viewBinding.root
@@ -40,51 +52,49 @@ class PaymentFragment : Fragment() {
     }
 
     private fun setObserver() {
-        viewModel.getResponse().observe(viewLifecycleOwner, Observer {
-            //viewBinding.pfImageQrcode.setImageBitmap(it)
+
+        viewModel.getRequestStatus().observe(viewLifecycleOwner, Observer {
+            if (it) {
+                MessageFactory.showToast(requireContext(), R.string.pf_api_loading_error, Gravity.CENTER)
+                viewBinding.pfImageQrcode.setImageResource(R.drawable.ic_error_loading)
+            }
         })
+
+        viewModel.isLoading().observe(viewLifecycleOwner, Observer {
+            if (it) {
+                viewBinding.pfImageQrcode.setImageResource(R.drawable.ic_downloading)
+            }
+        })
+
+        viewModel.getBitmapResponse().observe(viewLifecycleOwner, Observer {
+            loadImageInView(it)
+        })
+
     }
 
     private fun setListeners() {
-
         viewBinding.pfButtonGenerateCode.setOnClickListener {
+            if (viewBinding.pfEdittextInput.text.isNotEmpty()) {
 
+                viewModel.loadQrCodeFromAPI(viewBinding.pfEdittextInput.text.toString(), DEFAULT_QRCODE_SIZE)
+                view?.let { activity?.hideKeyboard(it) }
 
-            if (viewBinding.pfEdittextInput.text.length > 0) {
-
-                /*
-                LoginActivityViewModel.doAsync {
-
-                    var amount: String = viewBinding.pfEdittextInput.text.toString()
-
-                    val client = OkHttpClient()
-
-                    val mediaType = "application/x-www-form-urlencoded".toMediaTypeOrNull()
-                    val body = RequestBody.create(
-                        mediaType,
-                        "content={$amount}&width=128&height=128&fg-color=%23000000&bg-color=%23ffffff"
-                    )
-                    val request = Request.Builder()
-                        .url("https://neutrinoapi-qr-code.p.rapidapi.com/qr-code")
-                        .post(body)
-                        .addHeader("content-type", "application/x-www-form-urlencoded")
-                        .addHeader("X-RapidAPI-Host", "neutrinoapi-qr-code.p.rapidapi.com")
-                        .addHeader(
-                            "X-RapidAPI-Key",
-                            "valid api key"
-                        )
-                        .build()
-
-                    var response = client.newCall(request).execute()
-                    if (response.body != null) {
-                        val bitmap = BitmapFactory.decodeStream(response.body!!.byteStream())
-                        viewBinding.pfImageQrcode.setImageBitmap(bitmap)
-                    }
-
-                }.execute()
-                   */
             }
+            else {
+                MessageFactory.showToast(requireContext(), R.string.pf_invalid_input, Gravity.CENTER)
+            }
+        }
+    }
 
+    private fun Context.hideKeyboard(view: View) {
+        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
+    private fun loadImageInView(bmp : Bitmap) {
+
+        GlobalScope.launch(Main) {
+            viewBinding.pfImageQrcode.setImageBitmap(bmp);
         }
 
     }
