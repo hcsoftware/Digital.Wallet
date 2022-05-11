@@ -11,10 +11,15 @@
         <entry key="..\:/Users/herna/Downloads/Projects/EldarWallet/app/src/main/res/drawable/ic_money.xml" value="0.1955" />
         <entry key="..\:/Users/herna/Downloads/Projects/EldarWallet/app/src/main/res/drawable/ic_qrcode.xml" value="0.1955" />
         <entry key="..\:/Users/herna/Downloads/Projects/EldarWallet/app/src/main/res/drawable/layout_round_corner.xml" value="0.274" />
+        <entry key="..\:/Users/herna/Downloads/Projects/EldarWallet/app/src/main/res/drawable/menu_item_background.xml" value="0.212" />
+        <entry key="..\:/Users/herna/Downloads/Projects/EldarWallet/app/src/main/res/drawable/menu_item_highlight.xml" value="0.212" />
+        <entry key="..\:/Users/herna/Downloads/Projects/EldarWallet/app/src/main/res/drawable/shape_dialog_background.xml" value="0.25" />
         <entry key="..\:/Users/herna/Downloads/Projects/EldarWallet/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Users/herna/Downloads/Projects/EldarWallet/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/herna/Downloads/Projects/EldarWallet/app/src/main/res/layout/activity_wallet.xml" value="0.22" />
         <entry key="..\:/Users/herna/Downloads/Projects/EldarWallet/app/src/main/res/layout/balance_fragment.xml" value="0.39166666666666666" />
+        <entry key="..\:/Users/herna/Downloads/Projects/EldarWallet/app/src/main/res/layout/dialog_create_user.xml" value="0.67" />
+        <entry key="..\:/Users/herna/Downloads/Projects/EldarWallet/app/src/main/res/layout/dialog_custom.xml" value="0.1" />
         <entry key="..\:/Users/herna/Downloads/Projects/EldarWallet/app/src/main/res/layout/item_credit_card.xml" value="0.75" />
         <entry key="..\:/Users/herna/Downloads/Projects/EldarWallet/app/src/main/res/layout/new_card_fragment.xml" value="0.4891304347826087" />
         <entry key="..\:/Users/herna/Downloads/Projects/EldarWallet/app/src/main/res/layout/payment_fragment.xml" value="0.33" />

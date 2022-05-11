@@ -33,4 +33,7 @@
     <string name="ncf_invalid_input_msg">Please check your first digit.</string>
     <string name="pf_invalid_input">Please check the amount</string>
     <string name="pf_api_loading_error">Please check your network, or try again later</string>
+    <string name="menu_item_0">Balance</string>
+    <string name="menu_item_1">Add Card</string>
+    <string name="menu_item_2">Payment</string>
 </resources>

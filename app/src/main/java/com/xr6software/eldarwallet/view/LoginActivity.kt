@@ -1,10 +1,13 @@
 package com.xr6software.eldarwallet.view
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.Window
+import android.widget.Button
 import android.widget.EditText
-import androidx.appcompat.app.AlertDialog
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -50,7 +53,7 @@ class LoginActivity : AppCompatActivity() {
                 viewModel.checkIfUsernameExists(applicationContext, viewBinding.maEdittxtUser.text.toString())
             }
             else {
-                MessageFactory.showSnackBar(viewBinding.constraintLayoutMa, R.string.ma_snackbar_inputerror)
+                MessageFactory.showSnackBar(viewBinding.constraintLayoutLoginact, R.string.ma_snackbar_inputerror, false)
             }
         }
 
@@ -67,7 +70,7 @@ class LoginActivity : AppCompatActivity() {
         //This observable checks for valid credentials (user/pass)
         viewModel.getValidCredentials().observe(this, Observer {
             if (!it) {
-                MessageFactory.showSnackBar(viewBinding.constraintLayoutMa, R.string.ma_snackbar_badcredentials)
+                MessageFactory.showSnackBar(viewBinding.constraintLayoutLoginact, R.string.ma_snackbar_badcredentials, false)
             }
 
         })
@@ -84,18 +87,24 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun showCreateUserDialog() {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle(R.string.ma_dialog_new_user_title)
-        builder.setMessage(R.string.ma_dialog_new_user_message)
-        builder.setCancelable(false)
-        builder.setPositiveButton(android.R.string.yes) {dialogInterface, which ->
+
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.dialog_custom)
+        dialog.findViewById<TextView>(R.id.dialog_custom_title).text = getString(R.string.ma_dialog_new_user_title).toString().uppercase()
+        dialog.findViewById<TextView>(R.id.dialog_custom_msg).text = getString(R.string.ma_dialog_new_user_message)
+        val okButton : Button = dialog.findViewById(R.id.dialog_custom_ok_button)
+        val cancelButton : Button = dialog.findViewById(R.id.dialog_custom_cancel_button)
+        okButton.setOnClickListener {
             viewModel.insertUserInDatabase(applicationContext, viewBinding.maEdittxtUser.text.toString(), viewBinding.maEdittxtPass.text.toString())
-            MessageFactory.showSnackBar(viewBinding.constraintLayoutMa, R.string.la_usercreated_msg)
+            MessageFactory.showSnackBar(viewBinding.constraintLayoutLoginact, R.string.la_usercreated_msg, true)
+            dialog.dismiss()
         }
-        builder.setNegativeButton(android.R.string.no) { _, _ ->
-            //close dialog
+        cancelButton.setOnClickListener {
+            dialog.dismiss()
         }
-        builder.show()
+        dialog.show()
 
     }
 

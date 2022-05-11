@@ -2,15 +2,14 @@ package com.xr6software.eldarwallet.view
 
 import android.app.Activity
 import android.content.Context
-import android.content.Context.INPUT_METHOD_SERVICE
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -40,6 +39,7 @@ class PaymentFragment : Fragment() {
 
         viewBinding = PaymentFragmentBinding.inflate(inflater, container, false)
         return viewBinding.root
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -63,6 +63,11 @@ class PaymentFragment : Fragment() {
         viewModel.isLoading().observe(viewLifecycleOwner, Observer {
             if (it) {
                 viewBinding.pfImageQrcode.setImageResource(R.drawable.ic_downloading)
+                val downloadAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.donwload_rotation_animation)
+                viewBinding.pfImageQrcode.startAnimation(downloadAnimation)
+            }
+            else {
+                viewBinding.pfImageQrcode.clearAnimation()
             }
         })
 
@@ -74,15 +79,17 @@ class PaymentFragment : Fragment() {
 
     private fun setListeners() {
         viewBinding.pfButtonGenerateCode.setOnClickListener {
+
             if (viewBinding.pfEdittextInput.text.isNotEmpty()) {
 
-                viewModel.loadQrCodeFromAPI(viewBinding.pfEdittextInput.text.toString(), DEFAULT_QRCODE_SIZE)
+                viewModel.loadQrCodeApiService(viewBinding.pfEdittextInput.text.toString(), DEFAULT_QRCODE_SIZE)
                 view?.let { activity?.hideKeyboard(it) }
 
             }
             else {
                 MessageFactory.showToast(requireContext(), R.string.pf_invalid_input, Gravity.CENTER)
             }
+
         }
     }
 

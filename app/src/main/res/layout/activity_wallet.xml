@@ -18,17 +18,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/wa_bottom_menu"
-            app:navGraph='@navigation/fragment_nav'
-            app:defaultNavHost='true'/>
+            app:defaultNavHost='true'
+            app:navGraph='@navigation/fragment_nav' />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            app:itemTextColor="@color/theme_color_11"
+
             android:id="@+id/wa_bottom_menu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="@color/theme_color_00"
-            app:menu="@menu/fragments_bottom_menu" />
+            app:menu="@menu/fragments_bottom_menu"
+            app:itemBackground="@drawable/menu_item_background"
+            app:itemIconTint="@android:color/white"
+            app:itemTextColor="@android:color/white"/>
 
     </RelativeLayout>
 

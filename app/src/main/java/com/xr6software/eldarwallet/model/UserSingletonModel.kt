@@ -1,7 +1,5 @@
 package com.xr6software.eldarwallet.model
 
-import android.util.Log
-
 
 class UserSingletonModel() {
 

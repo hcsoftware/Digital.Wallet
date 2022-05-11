@@ -1,8 +1,10 @@
 package com.xr6software.eldarwallet.view
 
-import android.content.DialogInterface
+import android.app.Dialog
 import android.os.Bundle
-import androidx.appcompat.app.AlertDialog
+import android.view.Window
+import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
@@ -42,19 +44,24 @@ class WalletActivity : AppCompatActivity() {
     }
 
     fun showQuitDialog(){
-        val dialogBuilder = AlertDialog.Builder(this)
 
-        dialogBuilder.setMessage(R.string.quit_dialog_msg)
-            .setCancelable(false)
-            .setPositiveButton(R.string.quit_dialog_positive, DialogInterface.OnClickListener {
-                    dialog, id -> finish()
-            })
-            .setNegativeButton(R.string.quit_dialog_negative, DialogInterface.OnClickListener {
-                    dialog, id -> dialog.cancel()
-            })
-        val alert = dialogBuilder.create()
-        alert.setTitle(R.string.quit_dialog_title)
-        alert.show()
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.dialog_custom)
+        dialog.findViewById<TextView>(R.id.dialog_custom_title).text = getString(R.string.quit_dialog_title).toString().uppercase()
+        dialog.findViewById<TextView>(R.id.dialog_custom_msg).text = getString(R.string.quit_dialog_msg).toString().uppercase()
+        val okButton : Button = dialog.findViewById(R.id.dialog_custom_ok_button)
+        val cancelButton : Button = dialog.findViewById(R.id.dialog_custom_cancel_button)
+        okButton.setOnClickListener {
+            dialog.dismiss()
+            finish()
+        }
+        cancelButton.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
+
     }
 
 }
