@@ -23,8 +23,9 @@ Implements:<br></p>
 <li>Create icons using vector assets</li>
 <li>Android Bottom bar customization</li>
 </ul>
-
-<img src="https://user-images.githubusercontent.com/100162759/166834840-48876fef-d347-484c-a522-ea0a4c35f8ea.png" width=30% height=30%>
-<img src="https://user-images.githubusercontent.com/100162759/166834853-34b8bdf7-e073-4442-b059-1022f7da9f67.png" width=30% height=30%>
-<img src="https://user-images.githubusercontent.com/100162759/167505997-5bd3abe4-d62c-4489-9327-cb2e66f24e20.png" width=30% height=30%>
-
+<div>
+<img src="https://user-images.githubusercontent.com/100162759/167950831-d9f17df6-befa-4df7-bf34-7def949f80b0.png" width=30% height=30%>
+<img src="https://user-images.githubusercontent.com/100162759/167950839-a2f4d7e7-cafc-4ea8-8fbe-4624c4783cfe.png" width=30% height=30%>
+<img src="https://user-images.githubusercontent.com/100162759/167950842-4beb92c8-6d11-4e29-a651-07da8a06ad25.png" width=30% height=30%>
+<img src="https://user-images.githubusercontent.com/100162759/167950843-9c155938-40ed-4beb-b99d-1a3f33b4cf74.png" width=30% height=30%>
+</div>
