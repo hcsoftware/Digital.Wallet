@@ -10,15 +10,20 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.xr6software.eldarwallet.R
 import com.xr6software.eldarwallet.databinding.NewCardFragmentBinding
-import com.xr6software.eldarwallet.model.UserSingletonModel
+import com.xr6software.eldarwallet.model.UserSingleton
 import com.xr6software.eldarwallet.viewmodel.NewCardViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class NewCardFragment : Fragment() {
 
     companion object {
         fun newInstance() = NewCardFragment()
     }
 
+    @Inject
+    private lateinit var messageFactory: MessageFactory
     private lateinit var viewModel: NewCardViewModel
     private lateinit var viewBinding : NewCardFragmentBinding
 
@@ -40,7 +45,7 @@ class NewCardFragment : Fragment() {
 
     }
 
-    fun setListeners(){
+    private fun setListeners(){
 
         viewBinding.cfButtonAddcard.setOnClickListener {
 
@@ -55,7 +60,7 @@ class NewCardFragment : Fragment() {
                     proccesCard(viewBinding.cfEdittextCreditcard.text.toString())
                 }
                 else {
-                    MessageFactory.showToast(requireContext(),R.string.ncf_invalid_card_msg, Gravity.CENTER)
+                    messageFactory.showToast(R.string.ncf_invalid_card_msg, Gravity.CENTER)
                 }
 
             }
@@ -80,19 +85,19 @@ class NewCardFragment : Fragment() {
 
     }
 
-    fun proccesCard(userInput: String){
+    private fun proccesCard(userInput: String){
 
         if(!checkIfCardExists(userInput)) {
-            viewModel.addCreditCard(requireActivity(), UserSingletonModel.getUser().username.toString(), userInput)
+            viewModel.addCreditCard(requireActivity(), UserSingleton.getUser().userName.toString(), userInput)
             viewModel.setUser(requireActivity())
-            MessageFactory.showToast(requireContext(), R.string.nc_frag_card_add_msg, Gravity.CENTER)
+            messageFactory.showToast(R.string.nc_frag_card_add_msg, Gravity.CENTER)
         }
         else {
-            MessageFactory.showToast(requireContext(), R.string.nc_frag_card_in_db_msg, Gravity.CENTER)
+            messageFactory.showToast(R.string.nc_frag_card_in_db_msg, Gravity.CENTER)
         }
     }
 
-    fun checkIfCardExists(userInput : String) : Boolean{
+    private fun checkIfCardExists(userInput : String) : Boolean{
 
         var cardsList: MutableList<String> = ArrayList()
         var userCreditCards: String = viewModel.getUserCreditCards().value.toString()

@@ -10,7 +10,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.xr6software.eldarwallet.R
-import com.xr6software.eldarwallet.model.UserSingletonModel
+import com.xr6software.eldarwallet.model.UserSingleton
 
 class WalletActivity : AppCompatActivity() {
 
@@ -30,7 +30,7 @@ class WalletActivity : AppCompatActivity() {
         supportActionBar?.setIcon(R.drawable.toolbar_icon)
         supportActionBar?.setDisplayUseLogoEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
-        supportActionBar?.title = "Logged as: " + UserSingletonModel.getUser().username
+        supportActionBar?.title = "Logged as: " + UserSingleton.getUser().userName
         supportActionBar?.hide()
     }
 
@@ -43,7 +43,7 @@ class WalletActivity : AppCompatActivity() {
         showQuitDialog()
     }
 
-    fun showQuitDialog(){
+    private fun showQuitDialog(){
 
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)

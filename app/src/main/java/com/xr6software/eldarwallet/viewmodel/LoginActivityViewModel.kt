@@ -4,73 +4,66 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.xr6software.eldarwallet.data.UserRepository
 import com.xr6software.eldarwallet.model.User
-import com.xr6software.eldarwallet.model.UserDatabase
-import kotlinx.coroutines.CoroutineScope
+import com.xr6software.eldarwallet.model.UserSingleton
+import com.xr6software.eldarwallet.model.toUserSingletonModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-/*
-Login activity -> ViewModel
- */
-class LoginActivityViewModel() : ViewModel() {
 
-    //This LiveData Object returns The user once its loged on.
-    private var userInDatabase = MutableLiveData<User>()
-    //This LiveData Object returns the username if its found in the Db.
-    private var usernameExists = MutableLiveData<Boolean>()
-    //This LiveData Object retuns if the credentials are invalid.
-    private var validCredentials = MutableLiveData<Boolean>()
-    //This object holds the user
-    private var user: User = User("", "", 10230.23, "")
 
-    fun insertUserInDatabase(context: Context, username: String, password: String): Unit {
+/**
+@author Hernán Carrera
+@version 1.0
+This class handles the data from the activity so it's separated from the view.
+*/
 
-        CoroutineScope(IO).launch {
-            UserDatabase.getDatabase(context).userDao().insertUser(
-                User(
-                    username = username,
-                    pass = password,
-                    balance = 5230.22,
-                    cards = "4580067664664646312345678978542"
-                )
-            )
+
+@HiltViewModel
+class LoginActivityViewModel @Inject constructor(@ApplicationContext val context: Context) : ViewModel() {
+
+    @Inject
+    lateinit var userRepository : UserRepository
+    private var validUsername = MutableLiveData<Boolean>()
+    val getValidUsername : LiveData<Boolean> get() = validUsername
+    private var user = MutableLiveData<UserSingleton>()
+    val getUser : LiveData<UserSingleton> get() = user
+
+    /**
+     * Inserts new user in Db, with default balance and credit card values
+     * @param username string format. new user username.
+     * @param password string format. new user password.
+     */
+    fun insertNewUserInDatabase(username: String, password: String) {
+        userRepository.insertUserInDatabase(username, password)
+    }
+
+    /**
+     * Checks if user exists in Db, sets the liveData userNameExits boolean
+     * @param username string format. username.
+     */
+    fun validateUsername(username: String) {
+        CoroutineScope(Dispatchers.IO).launch {
+            validUsername.postValue(userRepository.validateUser(username))
         }
-
     }
 
-    //This methods search for the given username in the DB. If it exists it's loaded in the usernameExists livedata
-    fun checkIfUsernameExists(context: Context, username: String) {
-
+    /**
+     * Get the user object from DB if credentials are correct
+     * @param username string format. username.
+     * @param password string format. password.
+     * get UserInDb LiveData if user/pass are Ok.
+     */
+    fun getUserFromDb(username: String, password: String) {
         CoroutineScope(IO).launch {
-            var getUser  = UserDatabase.getDatabase(context).userDao().findByName(username)
-            usernameExists.postValue(getUser != null)
+            user.postValue(userRepository.getUserFromDatabase(username, password)?.toUserSingletonModel())
+
         }
-
-    }
-    //LiveData usernameExists Observable method.
-    fun getUserNameExists(): LiveData<Boolean> {
-        return usernameExists
     }
 
-    //This method check for usr and pass and retrieve the user object if correct (into the userIndatabase livedata Object.).
-    fun getUserFromDb(context: Context, username: String, password: String) {
-
-        CoroutineScope(IO).launch {
-            var getUser = UserDatabase.getDatabase(context).userDao().getUserFromDatabase(username, password)
-            validCredentials.postValue(getUser != null)
-            userInDatabase.postValue(getUser)
-        }
-
-    }
-    //LiveData User object Observable method.
-    fun getuserInDatabase(): LiveData<User> {
-        return userInDatabase
-    }
-
-    //LiveData usernameExists Observable method.
-    fun getValidCredentials(): LiveData<Boolean> {
-        return validCredentials
-    }
 
 }

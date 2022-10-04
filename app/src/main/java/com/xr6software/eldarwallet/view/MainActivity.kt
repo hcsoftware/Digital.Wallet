@@ -9,15 +9,18 @@ import androidx.appcompat.app.AppCompatActivity
 import com.xr6software.eldarwallet.R
 import com.xr6software.eldarwallet.databinding.ActivityMainBinding
 
+/**
+ * This activity shows a splash animation when the App starts.
+ */
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var viewBinding : ActivityMainBinding
+    private lateinit var viewBinding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         viewBinding = ActivityMainBinding.inflate(layoutInflater)
-        val view : View = viewBinding.root
+        val view: View = viewBinding.root
         setContentView(view)
 
         supportActionBar?.hide()
@@ -31,13 +34,12 @@ class MainActivity : AppCompatActivity() {
         val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.logo_animation)
         viewBinding.maImageviewLogo.startAnimation(animation)
 
-        animation.setAnimationListener(object: Animation.AnimationListener{
+        animation.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationStart(animation: Animation?) {
                 //TODO("Not yet implemented")
             }
 
             override fun onAnimationEnd(animation: Animation?) {
-
                 startActivity(Intent(applicationContext, LoginActivity::class.java))
                 finish()
             }

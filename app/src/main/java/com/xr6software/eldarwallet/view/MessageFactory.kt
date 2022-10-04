@@ -5,27 +5,36 @@ import android.graphics.Color
 import android.view.View
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Inject
 
-class MessageFactory {
+@InstallIn(SingletonComponent::class)
+@Module
+class MessageFactory @Inject constructor(@ApplicationContext val context: Context) {
 
-    companion object {
 
-        fun showToast(context: Context, msg: Int, gravity : Int) {
+    fun showToast(msg: Int, gravity: Int) {
 
-            val toast : Toast = Toast.makeText(context, msg, Toast.LENGTH_SHORT)
-                toast.setGravity(gravity, 0, 0)
-                toast.show()
+        val toast: Toast = Toast.makeText(context, msg, Toast.LENGTH_SHORT)
+        toast.setGravity(gravity, 0, 0)
+        toast.show()
+
+    }
+
+    fun showSnackBar(parentView: View, msg: Int, showOk: Boolean) {
+        var snackBar: Snackbar = Snackbar.make(
+            parentView,
+            msg, Snackbar.LENGTH_SHORT
+        )
+        snackBar.setBackgroundTint(Color.parseColor("#003495"))
+        snackBar.setActionTextColor(Color.parseColor("#EB1734"))
+        if (showOk) {
+            snackBar.setAction("OK") { }
         }
-
-        fun showSnackBar(parentView: View, msg: Int, showOk : Boolean) {
-            var snackbar : Snackbar = Snackbar.make(parentView,
-                msg, Snackbar.LENGTH_SHORT)
-            snackbar.setBackgroundTint(Color.parseColor("#003495"))
-            snackbar.setActionTextColor(Color.parseColor("#EB1734"))
-            if (showOk) {  snackbar.setAction("OK"){ } }
-            snackbar.show()
-        }
-
+        snackBar.show()
     }
 
 }

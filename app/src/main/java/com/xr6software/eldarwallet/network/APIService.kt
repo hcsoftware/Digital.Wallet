@@ -1,5 +1,8 @@
 package com.xr6software.eldarwallet.network
 
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -7,6 +10,8 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
 
+@InstallIn(SingletonComponent::class)
+@Module
 class APIService {
 
     fun loadQRCodeFromApi(amount: String, size: Int, callback: Callback<Response>)  {

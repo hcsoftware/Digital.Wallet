@@ -14,3 +14,10 @@ data class User(
     @PrimaryKey(autoGenerate = true)
     var uid: Int = 0
 }
+
+fun User.toUserSingletonModel() = UserSingleton(
+    userName = this.username,
+    password = this.pass,
+    balance = this.balance,
+    cards = this.cards
+)

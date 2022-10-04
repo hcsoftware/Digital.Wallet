@@ -10,8 +10,8 @@
         android:repeatCount="3"/>
     <scale
         android:duration="400"
-        android:pivotX="50%"
-        android:pivotY="50%"
+        android:pivotX="45%"
+        android:pivotY="45%"
         android:repeatMode="reverse"
         android:repeatCount="3"
         android:toXScale="110%"
