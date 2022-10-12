@@ -65,6 +65,23 @@
                 android:layout_height="wrap_content"
                 android:text="@string/pf_button_txt" />
 
+            <LinearLayout
+                android:visibility="gone"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:id="@+id/pf_loading_bar"
+                android:layout_width="150dp"
+                android:layout_height="150dp">
+
+                <ProgressBar
+                    android:layout_gravity="center"
+                    android:indeterminate="true"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+            </LinearLayout>
 
             <ImageView
                 android:id="@+id/pf_image_qrcode"

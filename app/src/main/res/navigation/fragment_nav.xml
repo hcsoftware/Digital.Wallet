@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragment_bottom_menu_item0"
-        android:name="com.xr6software.eldarwallet.view.BalanceFragment"
+        android:name="com.xr6software.digitalwallet.view.BalanceFragment"
         android:label="balance_fragment"
         tools:layout="@layout/balance_fragment"
         >
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragment_bottom_menu_item1"
-        android:name="com.xr6software.eldarwallet.view.NewCardFragment"
+        android:name="com.xr6software.digitalwallet.view.NewCardFragment"
         android:label="new_card_fragment"
         tools:layout="@layout/new_card_fragment" >
         <action
@@ -26,7 +26,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragment_bottom_menu_item2"
-        android:name="com.xr6software.eldarwallet.view.PaymentFragment"
+        android:name="com.xr6software.digitalwallet.view.PaymentFragment"
         android:label="payment_fragment"
         tools:layout="@layout/payment_fragment" />
 </navigation>
