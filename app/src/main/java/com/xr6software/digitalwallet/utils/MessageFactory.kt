@@ -12,7 +12,7 @@ import dagger.hilt.components.SingletonComponent
 import javax.inject.Inject
 
 /**
- * class with factory pattern to show messages to user as Toast or Snackbar
+ * Factory pattern to show messages to user as Toast or Snackbar
  */
 @InstallIn(SingletonComponent::class)
 @Module
